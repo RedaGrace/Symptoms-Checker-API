@@ -28,7 +28,7 @@ def request_page():
 
     out = outlier.predict([symptoms])[0]
     if out == 1:
-        data_set = {'message' : 'You can see a real doctor for better result since your symptoms are away of my knowledge'}
+        data_set = {'message' : 'I can help you to see a real doctor for better result since your symptoms are away of my knowledge domain'}
     else:
         disease = model.predict([symptoms])[0]
 
