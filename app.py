@@ -8,7 +8,7 @@ import re
 
 filename = 'Final_xgboost_model.joblib'
 model = joblib.load(filename)
-outlier_detector = joblib.load('Angle-based.joblib')
+outlier_detector = joblib.load('KNN_outlier_detector.joblib')
 precautions = pd.read_csv('disease_precautions.csv')
 
 
