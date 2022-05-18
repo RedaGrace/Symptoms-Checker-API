@@ -8,7 +8,7 @@ import re
 
 filename = 'Final_xgboost_model.joblib'
 model = joblib.load(filename)
-outlier_detector = joblib.load('KNN_outlier_detector.joblib')
+outlier_detector = joblib.load('Angle-based.joblib')
 precautions = pd.read_csv('disease_precautions.csv')
 
 
@@ -26,7 +26,7 @@ def request_page():
     symptoms= re.findall('\d', symptoms)
     symptoms= list(map(int,symptoms))
 
-    out = outlier.predict([symptoms])[0]
+    out = outlier_detector.predict([symptoms])[0]
     if out == 1:
         data_set = {'message' : 'I can help you to see a real doctor for better result since your symptoms are away of my knowledge domain'}
     else:
