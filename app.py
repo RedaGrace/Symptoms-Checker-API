@@ -3,6 +3,7 @@ import pandas as pd
 import json, time
 import joblib
 import re
+import os
 
 
 
@@ -49,4 +50,5 @@ def request_page():
     return json_dump
 
 if __name__=='__main__':
-    app.run(debug=True)
+    port = int(os.environ.get('PORT', 5000))
+    app.run(host='0.0.0.0', port=port, debug=True)
