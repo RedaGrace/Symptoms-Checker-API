@@ -37,14 +37,7 @@ def request_page():
                     "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
                     "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
                     "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
-                    "precaution_4": precautions[precautions.Disease == disease].iloc[0][5],
-                           
-                                #results in Arabic
-                        'disease': precautions[precautions.Disease == disease].iloc[0][6],
-                        "precaution_5": precautions[precautions.Disease == disease].iloc[0][7],
-                        "precaution_6": precautions[precautions.Disease == disease].iloc[0][8],
-                        "precaution_7": precautions[precautions.Disease == disease].iloc[0][9],
-                        "precaution_8": precautions[precautions.Disease == disease].iloc[0][10]}
+                    "precaution_4": precautions[precautions.Disease == disease].iloc[0][5]}
                      
     json_dump = json.dumps(data_set)
     return json_dump
