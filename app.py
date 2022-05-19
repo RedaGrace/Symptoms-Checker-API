@@ -34,15 +34,15 @@ def request_page():
         disease = model.predict([symptoms])[0]
 
         data_set = {'prediction': disease,
-                    "precaution_1": precautions[precautions.Disease == disease].iloc[0][1],
-                    "precaution_2": precautions[precautions.Disease == disease].iloc[0][2],
-                    "precaution_3": precautions[precautions.Disease == disease].iloc[0][3],
-                    "precaution_4": precautions[precautions.Disease == disease].iloc[0][4],
-                    "prediction_in_arabic": precautions[precautions.Disease == disease].iloc[0][5],
-                    "precaution_1_in_arabic": precautions[precautions.Disease == disease].iloc[0][6],
-                    "precaution_2_in_arabic": precautions[precautions.Disease == disease].iloc[0][7],
-                    "precaution_3_in_arabic": precautions[precautions.Disease == disease].iloc[0][8],
-                    "precaution_4_in_arabic": precautions[precautions.Disease == disease].iloc[0][9]}
+                    "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
+                    "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
+                    "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
+                    "precaution_4": precautions[precautions.Disease == disease].iloc[0][5],
+                    "prediction_in_arabic": precautions[precautions.Disease == disease].iloc[0][6],
+                    "precaution_1_in_arabic": precautions[precautions.Disease == disease].iloc[0][7],
+                    "precaution_2_in_arabic": precautions[precautions.Disease == disease].iloc[0][8],
+                    "precaution_3_in_arabic": precautions[precautions.Disease == disease].iloc[0][9],
+                    "precaution_4_in_arabic": precautions[precautions.Disease == disease].iloc[0][10]}
                      
     json_dump = json.dumps(data_set)
     return json_dump
