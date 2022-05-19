@@ -6,10 +6,10 @@ import re
 
 
 
-filename = 'Final_xgboost_model.joblib'
+filename = 'xgb_model.joblib'
 model = joblib.load(filename)
-outlier_detector = joblib.load('KNN_outlier_detector.joblib')
-precautions = pd.read_csv('disease_precautions.csv')
+outlier_detector = joblib.load('outlier.joblib')
+precautions = pd.read_csv('precautions.csv')
 
 
 app = Flask(__name__)
@@ -37,12 +37,14 @@ def request_page():
                     "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
                     "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
                     "precaution_4": precautions[precautions.Disease == disease].iloc[0][5],
-                            #results in Arabic
+                     '''       
+                                #results in Arabic
                         'disease': precautions[precautions.Disease == disease].iloc[0][6],
                         "precaution_5": precautions[precautions.Disease == disease].iloc[0][7],
                         "precaution_6": precautions[precautions.Disease == disease].iloc[0][8],
                         "precaution_7": precautions[precautions.Disease == disease].iloc[0][9],
                         "precaution_8": precautions[precautions.Disease == disease].iloc[0][10]}
+                     '''
     json_dump = json.dumps(data_set)
     return json_dump
 
