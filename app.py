@@ -7,10 +7,10 @@ import os
 
 
 
-filename = 'xgb_model.joblib'
+filename = 'Final_xgboost_model.joblib'
 model = joblib.load(filename)
-outlier_detector = joblib.load('outlier.joblib')
-precautions = pd.read_csv('precautions.csv')
+outlier_detector = joblib.load('KNN_outlier.joblib')
+precautions = pd.read_csv('disease_precautions.csv')
 
 
 app = Flask(__name__)
