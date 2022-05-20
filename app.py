@@ -4,7 +4,7 @@ import json, time
 import joblib
 import re
 import os
-
+from flask_cors import CORS
 
 
 filename = 'Final_xgboost_model.joblib'
@@ -14,6 +14,7 @@ precautions = pd.read_csv('disease_precautions.csv')
 
 
 app = Flask(__name__)
+CORS(app)
 
 @app.route('/', methods = ['GET'])
 def home_page():
