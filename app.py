@@ -27,23 +27,25 @@ def request_page():
     symptoms = request.args.get('symptoms') # /predict/?symptoms=symptoms
     symptoms= re.findall('\d', symptoms)
     symptoms= list(map(int,symptoms))
-
-    out = outlier_detector.predict([symptoms])[0]
-    if out == 1:
-        data_set = {'message' : 'I can help you to see a real doctor for better result since your symptoms are away of my knowledge domain'}
+    if  sum(symptoms)<3:
+        data_set = {'warning' : 'For a better result, please choose at least 3 symptoms'}
     else:
-        disease = model.predict([symptoms])[0]
+        out = outlier_detector.predict([symptoms])[0]
+        if out == 1:
+            data_set = {'warning' : 'I can help you to see a real doctor for a better result since your symptoms are away from my knowledge domain'}
+        else:
+            disease = model.predict([symptoms])[0]
 
-        data_set = {'prediction': disease,
-                    "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
-                    "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
-                    "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
-                    "precaution_4": precautions[precautions.Disease == disease].iloc[0][5],
-                    "prediction_in_arabic": precautions[precautions.Disease == disease].iloc[0][6],
-                    "precaution_1_in_arabic": precautions[precautions.Disease == disease].iloc[0][7],
-                    "precaution_2_in_arabic": precautions[precautions.Disease == disease].iloc[0][8],
-                    "precaution_3_in_arabic": precautions[precautions.Disease == disease].iloc[0][9],
-                    "precaution_4_in_arabic": precautions[precautions.Disease == disease].iloc[0][10]}
+            data_set = {'prediction': disease,
+                        "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
+                        "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
+                        "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
+                        "precaution_4": precautions[precautions.Disease == disease].iloc[0][5],
+                        "prediction_in_arabic": precautions[precautions.Disease == disease].iloc[0][6],
+                        "precaution_1_in_arabic": precautions[precautions.Disease == disease].iloc[0][7],
+                        "precaution_2_in_arabic": precautions[precautions.Disease == disease].iloc[0][8],
+                        "precaution_3_in_arabic": precautions[precautions.Disease == disease].iloc[0][9],
+                        "precaution_4_in_arabic": precautions[precautions.Disease == disease].iloc[0][10]}
                      
     json_dump = json.dumps(data_set)
     return json_dump
