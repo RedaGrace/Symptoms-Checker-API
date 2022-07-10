@@ -50,7 +50,7 @@ def request_page():
                         
                         'Overview': info[info.disease == disease]['Overview'].values.tolist(),
                         'Causes': info[info.disease == disease]['Causes'].values.tolist(),
-                        'Risk_Factors': info[info.disease == disease]['Risk factors'].values.tolist()
+                        'Risk_Factors': info[info.disease == disease]['Risk factors'].values.tolist(),
                        
                         'Overview_in_arabic': info[info.disease == disease]['Overview_in_arabic'].values.tolist(),
                         'Causes_in_arabic': info[info.disease == disease]['Causes_in_arabic'].values.tolist(),
