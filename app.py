@@ -11,7 +11,7 @@ filename = 'Final_xgboost_model.joblib'
 model = joblib.load(filename)
 outlier_detector = joblib.load('KNN_outlier_detector.joblib')
 precautions = pd.read_csv('disease_precautions.csv')
-info = pd.read_csv('28_disease_info.csv')
+info = pd.read_csv('28_disease_info_translated.csv')
 
 
 app = Flask(__name__)
@@ -50,7 +50,11 @@ def request_page():
                         
                         'Overview': info[info.disease == disease]['Overview'].values.tolist(),
                         'Causes': info[info.disease == disease]['Causes'].values.tolist(),
-                        'Risk_Factors': info[info.disease == disease]['Risk factors'].values.tolist()}
+                        'Risk_Factors': info[info.disease == disease]['Risk factors'].values.tolist()
+                       
+                        'Overview_in_arabic': info[info.disease == disease]['Overview_in_arabic'].values.tolist(),
+                        'Causes_in_arabic': info[info.disease == disease]['Causes_in_arabic'].values.tolist(),
+                        'Risk_Factors_in_arabic': info[info.disease == disease]['Risk_factors_in_arabic'].values.tolist()}
                      
     json_dump = json.dumps(data_set)
     return json_dump
