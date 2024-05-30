@@ -1,11 +1,20 @@
 from flask import *
+from sklearn.preprocessing import LabelEncoder
 import pandas as pd
+import numpy as np
 import json, time
 import joblib
 import re
 import os
 from flask_cors import CORS
 
+# save np.load
+np_load_old = np.load
+# modify the default parameters of np.load
+np.load = lambda *a,**k: np_load_old(*a, allow_pickle=True, **k)
+
+encoder = LabelEncoder()
+encoder.classes_ = np.load('classes.npy')
 
 filename = 'xgboost_model.joblib'
 model = joblib.load(filename)
@@ -35,7 +44,8 @@ def request_page():
         if out == 1:
             data_set = {'warning' : 'I can help you to see a real doctor for a better result since your symptoms are away from my knowledge domain'}
         else:
-            disease = model.predict([symptoms])[0]
+            disease_index = model.predict([symptoms])[0]
+            disease = encoder.classes_[disease_index]
 
             data_set = {'prediction': disease,
                         "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
