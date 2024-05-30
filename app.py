@@ -7,9 +7,9 @@ import os
 from flask_cors import CORS
 
 
-filename = 'Final_xgboost_model.joblib'
+filename = 'xgboost_model.joblib'
 model = joblib.load(filename)
-outlier_detector = joblib.load('KNN_outlier_detector.joblib')
+outlier_detector = joblib.load('Average_KNN_outlier_detector.joblib')
 precautions = pd.read_csv('disease_precautions.csv')
 info = pd.read_csv('28_disease_info_translated.csv')
 
