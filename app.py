@@ -41,9 +41,11 @@ def request_page():
 
     else:
         disease_index = model.predict([symptoms])[0]
+        confidence = str(int(model.predict_proba([symptoms])[0].max()*100))+'%'
         disease = encoder.classes_[disease_index]
 
         data_set = {'prediction': disease,
+                    "confidence": confidence,
                     "precaution_1": precautions[precautions.Disease == disease].iloc[0][2],
                     "precaution_2": precautions[precautions.Disease == disease].iloc[0][3],
                     "precaution_3": precautions[precautions.Disease == disease].iloc[0][4],
