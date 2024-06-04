@@ -57,6 +57,8 @@ def request_page():
                     "precaution_4_in_arabic": precautions[precautions.Disease == disease].iloc[0][10],
                     
                     'Overview': info[info.disease == disease]['Overview'].values.tolist(),
+                    'Link': info[info.disease == disease]['link'].values.tolist(),
+                    'Diagnosis': info[info.disease == disease]['diagnosis'].values.tolist(),
                     'Causes': info[info.disease == disease]['Causes'].values.tolist(),
                     'Risk_Factors': info[info.disease == disease]['Risk factors'].values.tolist(),
                    
